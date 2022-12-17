@@ -4,8 +4,9 @@ data "cloudflare_zones" "zones" {
   count = length(var.domains)
 
   filter {
-    name   = var.domains[count.index]
-    paused = false
+    name        = var.domains[count.index]
+    lookup_type = "exact"
+    paused      = false
   }
 }
 

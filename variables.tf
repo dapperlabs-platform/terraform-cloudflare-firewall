@@ -6,10 +6,11 @@ variable "domains" {
 
 variable "firewall_rule" {
   type = object({
+    name        = string
     description = string
     expression  = string
     action      = string
-    paused      = bool
+    enabled     = bool
     bypass      = list(string)
     priority    = number
   })

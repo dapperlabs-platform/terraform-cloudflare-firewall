@@ -10,26 +10,20 @@ data "cloudflare_zones" "zones" {
   }
 }
 
-# Cloudflare Filters needed to make a CF FW rule
-resource "cloudflare_filter" "filter" {
-  count = length(var.domains)
-
+resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
   zone_id     = lookup(data.cloudflare_zones.zones[count.index].zones[0], "id")
-  paused      = var.firewall_rule.paused
-  expression  = var.firewall_rule.expression
+  name        = var.firewall_rule.name
   description = var.firewall_rule.description
+  kind        = "zone"
+  phase       = "http_request_firewall_custom"
 
-}
-
-# Firewall Rule
-resource "cloudflare_firewall_rule" "rule" {
-  count = length(var.domains)
-
-  zone_id     = lookup(data.cloudflare_zones.zones[count.index].zones[0], "id")
-  filter_id   = cloudflare_filter.filter[count.index].id
-  action      = var.firewall_rule.action
-  paused      = var.firewall_rule.paused
-  description = var.firewall_rule.description
-  priority    = var.firewall_rule.priority
-  products    = var.firewall_rule.action == "bypass" ? var.firewall_rule.bypass : null
+  rules {
+    action = var.firewall_rule.action
+    action_parameters {
+      products = var.firewall_rule.action == "bypass" ? var.firewall_rule.bypass : null
+    }
+    expression  = var.firewall_rule.expression
+    description = var.firewall_rule.description
+    enabled     = var.firewall_rule.enabled
+  }
 }

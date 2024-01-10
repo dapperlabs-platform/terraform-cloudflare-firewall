@@ -13,11 +13,10 @@ data "cloudflare_zones" "zones" {
 resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
   count = length(var.domains)
 
-  zone_id     = lookup(data.cloudflare_zones.zones[count.index].zones[0], "id")
-  name        = var.firewall_rule.name
-  description = var.firewall_rule.description
-  kind        = "custom"
-  phase       = "http_request_firewall_custom"
+  zone_id = lookup(data.cloudflare_zones.zones[count.index].zones[0], "id")
+  name    = "default"
+  kind    = "zone"
+  phase   = "http_request_firewall_custom"
 
   rules {
     action = var.firewall_rule.action

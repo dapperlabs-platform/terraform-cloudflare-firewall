@@ -10,6 +10,7 @@ data "cloudflare_zones" "zones" {
   }
 }
 
+
 resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
   count = length(var.domains)
 
@@ -21,6 +22,7 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
   rules {
     action = var.firewall_rule.action
     action_parameters {
+      id       = var.firewall_rule.id
       products = var.firewall_rule.action == "bypass" ? var.firewall_rule.bypass : null
     }
     expression  = var.firewall_rule.expression

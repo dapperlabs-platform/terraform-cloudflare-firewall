@@ -6,7 +6,7 @@ variable "domains" {
 
 variable "firewall_rule" {
   type = object({
-    ruleset_id  = string
+    rulesets_id = string
     description = string
     expression  = string
     action      = string

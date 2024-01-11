@@ -15,4 +15,7 @@ variable "firewall_rule" {
     priority    = number
   })
 
+  default = {
+    ruleset_id = null
+  }
 }

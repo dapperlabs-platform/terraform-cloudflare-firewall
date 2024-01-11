@@ -16,6 +16,12 @@ variable "firewall_rule" {
   })
 
   default = {
-    ruleset_id = null
+    ruleset_id  = null
+    description = "Default description"
+    expression  = "default_expression"
+    action      = "block"
+    enabled     = true
+    bypass      = ["default_bypass"]
+    priority    = 100
   }
 }

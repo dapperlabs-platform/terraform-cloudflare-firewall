@@ -14,14 +14,4 @@ variable "firewall_rule" {
     bypass      = list(string)
     priority    = number
   })
-
-  default = {
-    ruleset_id  = null
-    description = "Default description"
-    expression  = "default_expression"
-    action      = "block"
-    enabled     = true
-    bypass      = ["default_bypass"]
-    priority    = 100
-  }
 }

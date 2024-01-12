@@ -22,9 +22,11 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
 
   rules {
     action = var.firewall_rule.action
-    action_parameters {
-      ruleset  = var.ruleset_id
-      products = var.firewall_rule.action == "bypass" ? var.firewall_rule.bypass : null
+    dynamic "action_parameters" {
+      for_each = var.ruleset_id == null ? [] : [1]
+      content {
+        ruleset = var.ruleset_id
+      }
     }
     expression  = var.firewall_rule.expression
     description = var.firewall_rule.description

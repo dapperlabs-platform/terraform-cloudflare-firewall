@@ -4,12 +4,6 @@ variable "domains" {
   default     = []
 }
 
-variable "ruleset_id" {
-  type        = string
-  description = "Cloudflare Ruleset ID to be applied to"
-  default     = null
-}
-
 variable "name" {
   type        = string
   description = "Cloudflare Ruleset Name"

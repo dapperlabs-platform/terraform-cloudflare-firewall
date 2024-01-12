@@ -10,6 +10,12 @@ variable "ruleset_id" {
   default     = null
 }
 
+variable "name" {
+  type        = string
+  description = "Cloudflare Ruleset Name"
+  default     = "default"
+}
+
 variable "firewall_rule" {
   type = object({
     description = string

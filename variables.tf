@@ -5,7 +5,7 @@ variable "domains" {
 }
 
 variable "firewall_rules" {
-  type = map({
+  type = map(object{
     description = string
     expression  = string
     action      = string

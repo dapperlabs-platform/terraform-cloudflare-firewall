@@ -4,9 +4,14 @@ variable "domains" {
   default     = []
 }
 
+variable "ruleset_id" {
+  type        = string
+  description = "Cloudflare Ruleset ID to be applied to"
+  default     = null
+}
+
 variable "firewall_rule" {
   type = object({
-    ruleset_id  = string
     description = string
     expression  = string
     action      = string

@@ -4,14 +4,11 @@ variable "domains" {
   default     = []
 }
 
-variable "firewall_rule" {
-  type = object({
-    description = string
-    expression  = string
-    action      = string
-    paused      = bool
-    bypass      = list(string)
-    priority    = number
-  })
-
+variable "firewall_rules" {
+  type = map(object({
+    description = string,
+    expression  = string,
+    action      = string,
+    enabled     = bool,
+  }))
 }

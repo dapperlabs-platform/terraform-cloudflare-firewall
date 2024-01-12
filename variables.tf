@@ -10,7 +10,5 @@ variable "firewall_rules" {
     expression  = string,
     action      = string,
     enabled     = bool,
-    bypass      = list(string),
-    priority    = number,
   }))
 }

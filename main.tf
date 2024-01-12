@@ -26,7 +26,7 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
       for_each = var.ruleset_id == null ? [] : [1]
       content {
         ruleset = var.ruleset_id
-        version = "1"
+        version = "4"
       }
     }
     expression  = var.firewall_rule.expression

@@ -16,14 +16,17 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
 
 
   zone_id = lookup(data.cloudflare_zones.zones[count.index].zones[0], "id")
-  name    = var.name
+  name    = "default"
   kind    = "zone"
   phase   = "http_request_firewall_custom"
 
-  rules {
-    action      = var.firewall_rule.action
-    expression  = var.firewall_rule.expression
-    description = var.firewall_rule.description
-    enabled     = var.firewall_rule.enabled
+  dynamic "rules" {
+    for_each = var.firewall_rules
+    content {
+      action      = rules.value.action
+      expression  = rules.value.expression
+      description = rules.value.description
+      enabled     = rules.value.enabled
+    }
   }
 }

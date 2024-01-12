@@ -4,14 +4,8 @@ variable "domains" {
   default     = []
 }
 
-variable "name" {
-  type        = string
-  description = "Cloudflare Ruleset Name"
-  default     = "default"
-}
-
-variable "firewall_rule" {
-  type = object({
+variable "firewall_rules" {
+  type = map({
     description = string
     expression  = string
     action      = string

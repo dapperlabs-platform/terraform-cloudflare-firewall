@@ -10,6 +10,6 @@ variable "firewall_rules" {
     expression  = string,
     description = string,
     enabled     = bool,
-    phases      = list(string)
+    phases      = optional(list(string))
   }))
 }

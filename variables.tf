@@ -10,11 +10,6 @@ variable "firewall_rules" {
     expression  = string,
     description = string,
     enabled     = bool,
-  }))
-}
-
-variable "skip_parameters" {
-  type = map(object({
-    phases = list(string)
+    phases      = optional(list(string))
   }))
 }

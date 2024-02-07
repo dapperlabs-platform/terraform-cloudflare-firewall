@@ -17,16 +17,18 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
   kind    = "zone"
   phase   = "http_request_firewall_custom"
 
-  for_each = var.firewall_rules
-  rules {
-    action      = rules.value.action
-    expression  = rules.value.expression
-    description = rules.value.description
-    enabled     = rules.value
-    dynamic "action_parameters" {
-      for_each = rules.value.action == "skip" ? [1] : []
-      content {
-        phases = rules.value.phases
+  dynamic "rules" {
+    for_each = var.firewall_rules
+    content {
+      action      = rules.value.action
+      expression  = rules.value.expression
+      description = rules.value.description
+      enabled     = rules.value.enabled
+      dynamic "action_parameters" {
+        for_each = rules.value.action == "skip" ? [1] : []
+        content {
+          phases = rules.value.phases
+        }
       }
     }
   }

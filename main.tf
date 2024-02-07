@@ -19,10 +19,10 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
 
   for_each = var.firewall_rules
   rules {
-    action      = firewall_rules.value.action
-    expression  = firewall_rules.value.expression
-    description = firewall_rules.value.description
-    enabled     = firewall_rules.value.enabled
+    action      = var.firewall_rules.value.action
+    expression  = var.firewall_rules.value.expression
+    description = var.firewall_rules.value.description
+    enabled     = var.firewall_rules.value.enabled
 
     dynamic "action_parameters" {
       for_each = var.firewall_rules.value.action == "skip" ? [1] : [0]

@@ -27,8 +27,12 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
       expression  = rules.value.expression
       description = rules.value.description
       enabled     = rules.value.enabled
-      action_parameters {
-        phases = rules.value.phases
+      dynamic "action_parameters" {
+        for_each = firewall_rules.value.action_parameters
+        content {
+          phases = action_parameters.value.phases
+        }
+
       }
     }
   }

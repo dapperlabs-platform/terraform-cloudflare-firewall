@@ -12,5 +12,6 @@ variable "firewall_rules" {
     enabled     = bool,
     logging     = optional(bool, true)
     phases      = optional(list(string))
+    logging     = optional(bool, true)
   }))
 }

@@ -6,11 +6,11 @@ variable "domains" {
 
 variable "firewall_rules" {
   type = map(object({
-    description     = string,
-    expression      = string,
-    action          = string,
-    enabled         = bool,
-    logging_enabled = optional(bool),
-    phases          = optional(list(string)),
+    description = string,
+    expression  = string,
+    action      = string,
+    enabled     = bool,
+    #logging_enabled = optional(bool),
+    phases = optional(list(string)),
   }))
 }

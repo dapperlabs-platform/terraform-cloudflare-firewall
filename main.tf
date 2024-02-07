@@ -1,10 +1,8 @@
 # Cloudflare Firewall Rules
 # Firewall rules for all Zones Defined
 data "cloudflare_zones" "zones" {
-  count = length(var.domains)
-
   filter {
-    name        = var.domains[count.index]
+    name        = var.domains
     lookup_type = "exact"
     paused      = false
   }

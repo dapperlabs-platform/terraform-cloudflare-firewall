@@ -13,7 +13,7 @@ variable "firewall_rules" {
   }))
 }
 
-variable "action_parameters" {
+variable "skip_parameters" {
   type = map(object({
     phases = list(string)
   }))

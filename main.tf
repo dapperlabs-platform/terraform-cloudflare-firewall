@@ -31,7 +31,7 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
         enabled = rules.value.logging_enabled
       }
       action_parameters {
-        phases = ["http_request_firewall_managed"]
+        phases = rules.value.phases
       }
     }
   }

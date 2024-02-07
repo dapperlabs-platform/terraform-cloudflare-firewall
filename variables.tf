@@ -10,8 +10,11 @@ variable "firewall_rules" {
     expression  = string,
     description = string,
     enabled     = bool,
-    action_parameters = set(object({
-      phases = list(string),
-    })),
+  }))
+}
+
+variable "action_parameters" {
+  type = map(object({
+    phases = list(string)
   }))
 }

@@ -26,9 +26,9 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
       expression  = rules.value.expression
       description = rules.value.description
       enabled     = rules.value.enabled
-      logging {
-        enabled = rules.value.action == "skip" ? [true] : []
-      }
+      # logging {
+      #   enabled = rules.value.action == "skip" ? [true] : []
+      # }
       dynamic "action_parameters" {
         for_each = rules.value.action == "skip" ? [1] : []
         content {

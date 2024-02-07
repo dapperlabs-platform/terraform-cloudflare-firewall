@@ -4,7 +4,7 @@ https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resour
 
 ## What does this do?
 
-This module allows you to create a CF Custom Ruleset and define custm rules
+This module allows you to create a CF Custom Ruleset and define custom rules
 
 ## How to use this module?
 

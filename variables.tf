@@ -1,7 +1,7 @@
 variable "domains" {
-  type        = string
+  type        = list(string)
   description = "Cloudflare Domain to be applied to"
-  default     = ""
+  default     = []
 }
 
 variable "firewall_rules" {
@@ -10,6 +10,6 @@ variable "firewall_rules" {
     expression  = string,
     description = string,
     enabled     = bool,
-    phases      = optional(list(string))
+    phases      = list(string)
   }))
 }

@@ -22,9 +22,9 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
   dynamic "rules" {
     for_each = var.firewall_rules
     content {
-      action      = rules.value.action
-      expression  = rules.value.expression
       description = rules.value.description
+      expression  = rules.value.expression
+      action      = rules.value.action
       enabled     = rules.value.enabled
 
       dynamic "logging" {

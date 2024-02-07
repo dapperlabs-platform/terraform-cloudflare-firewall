@@ -5,13 +5,13 @@ variable "domains" {
 }
 
 variable "firewall_rules" {
-  type = map(object({
+  type = list(object({
     action      = string,
     expression  = string,
     description = string,
     enabled     = bool,
-    action_parameters = optional(object({
-      phases = optional(list(string)),
+    action_parameters = list(object({
+      phases = list(string),
     })),
   }))
 }

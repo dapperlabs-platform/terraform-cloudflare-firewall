@@ -10,8 +10,8 @@ variable "firewall_rules" {
     expression  = string,
     description = string,
     enabled     = bool,
-    action_parameters = set(object({
+    action_parameters = object({
       phases = optional(list(string)),
-    })),
+    }),
   }))
 }

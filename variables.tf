@@ -10,5 +10,6 @@ variable "firewall_rules" {
     expression  = string,
     action      = string,
     enabled     = bool,
+    products    = optional(list(string)),
   }))
 }

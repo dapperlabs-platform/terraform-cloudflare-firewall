@@ -27,6 +27,9 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
       expression  = rules.value.expression
       description = rules.value.description
       enabled     = rules.value.enabled
+      action_parameters {
+        products = rules.value.products
+      }
     }
   }
 }

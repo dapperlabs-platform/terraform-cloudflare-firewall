@@ -25,7 +25,7 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
     enabled     = firewall_rules.value.enabled
 
     dynamic "action_parameters" {
-      for_each = firewall_rules.value.action == "skip" ? [1] : [0]
+      for_each = firewall_rules.value.action == "skip" ? [1] : []
       content {
         phases = firewall_rules.value.phases
       }

@@ -37,7 +37,8 @@ resource "cloudflare_ruleset" "zone_level_waf_custom_rules" {
       dynamic "action_parameters" {
         for_each = rules.value.action == "skip" ? [1] : []
         content {
-          phases = rules.value.phases
+          ruleset = rules.value.ruleset
+          phases  = rules.value.phases
         }
       }
     }

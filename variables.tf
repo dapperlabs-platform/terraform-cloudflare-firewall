@@ -10,7 +10,7 @@ variable "firewall_rules" {
     expression  = string,
     action      = string,
     enabled     = bool,
-    logging     = optional(bool, true)
+    logging     = optional(bool)
     ruleset     = optional(string)
     phases      = optional(list(string))
   }))

@@ -55,10 +55,10 @@ resource "cloudflare_ruleset" "zone_level_geo_blocking" {
   phase   = "http_request_firewall_custom"
 
   dynamic "rules" {
-    for_each = toset(var.country_block_list)
+    for_each = var.country_block_list
     content {
       description = "Block traffic from ${rules.value} - Defined via Terraform"
-      expression  = "(ip.src.country eq \"${rules.value}\")"
+      expression  = "(ip.src.country eq \"${rules.key}\")"
       action      = "block"
       enabled     = true
     }
